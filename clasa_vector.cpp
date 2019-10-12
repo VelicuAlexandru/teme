@@ -1,4 +1,6 @@
 #pragma once
+#ifndef VECTOR_H
+#define VECTOR_H
 #include <iostream>
 using namespace  std;
 template <typename T>
@@ -97,3 +99,4 @@ ostream & operator<<(ostream&os, const Vector<T> & vec) //operator de ostream
 	}
 	return os;
 }
+#endif
