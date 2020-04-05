@@ -87,6 +87,66 @@ public:
 		vector = aux;
 		return vector[lungime];
 	}
+	T & pop_back() // stergere element de la finalul vectorului si returnarea acestuia
+	{
+		if (vector)
+		{
+			T*aux = new T[lungime - 1];
+			T elem = vector[lungime-1];
+			for (int i = 0; i < lungime - 1; i++)
+			{
+				aux[i] = vector[i];
+			}
+			delete[] vector;
+			lungime--;
+			vector = new T[lungime];
+			vector = aux;
+			return elem;
+		}
+		else throw "vector gol";
+	}
+
+	void del(int index)//stergere element de pe pozitia index
+	{
+		if (vector && (index < (lungime - 1)))
+		{
+			T*aux = new T[lungime - 1];
+			for (int i = 0; i < index; i++)
+			{
+				aux[i] = vector[i];
+			}
+			for (int i = index + 1; i < lungime - 1; i++)
+			{
+				aux[i - 1] = vector[i];
+			}
+			lungime--;
+			delete[]vector;
+			vector = new T[lungime];
+			vector = aux;
+		}
+		else if (index == lungime - 1)
+			this->pop_back();
+		else throw "nu se poate sterge elementul";
+	} 
+	void add_elem(int index, const T& elem)// adaugare element pe pozitia index
+	{
+		if (vector && (index < (lungime)))
+		{
+			T*aux = new T[lungime + 1];
+			for (int i = 0; i < index; i++)
+				aux[i] = vector[i];
+			aux[index] = elem;
+			for (int i = index + 1; i <= lungime; i++)
+				aux[i] = vector[i - 1];
+			lungime++;
+			delete[]vector;
+			vector = new T[lungime];
+			vector = aux;
+		}
+		else if (index == lungime)
+			this->push_back(elem);
+		else throw"nu se poate adauga elementul";
+	}
 	template <typename T>
 	friend ostream& operator <<(ostream&, const Vector&);
 };
@@ -100,3 +160,4 @@ ostream & operator<<(ostream&os, const Vector<T> & vec) //operator de ostream
 	return os;
 }
 #endif
+
