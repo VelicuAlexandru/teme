@@ -66,8 +66,8 @@ public:
 	bool vector_gol() //verificare daca e vector gol
 	{
 		if (lungime > 0)
-			return true;
-		else return false;
+			return false;
+		else return true;
 	}
 	T & push_back(const T & element) //adauga un element la finalul vectorului
 	{
